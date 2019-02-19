@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-admin
+#  namespace: zhanghong
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-admin
+  template:
+    metadata:
+      labels:
+        app: redis-admin
+    spec:
+      nodeSelector:
+        paascloud_zk: default      
+      containers:
+      - name: redis-admin
+        image:  erikdubbelboer/phpredisadmin
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: REDIS_1_HOST
+          value: paascloud-db-redis
+        - name: REDIS_1_NAME
+          value: paascloud-db-redis    
+        - name: REDIS_1_PORT
+          value: '6379'                     
+        - name: REDIS_1_AUTH
+          value: paascloud@redis             
+ 
+          
+
+          

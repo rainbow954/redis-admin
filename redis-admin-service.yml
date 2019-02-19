@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: redis-admin
+#  namespace: zhanghong
+spec:
+  selector:
+    app: redis-admin
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
